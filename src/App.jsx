@@ -42,14 +42,14 @@ export default function App() {
 
   return (
     <div id="top" className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-amber-500 selection:text-slate-950 overflow-x-hidden w-full max-w-full">
-      {/* Sticky Header with Navigation */}
+      {/* Fixed Header with Navigation */}
       <Navbar
         onOpenQuoteModal={() => setQuoteModalOpen(true)}
         onSelectService={handleSelectService}
       />
 
-      {/* Main Page Flow */}
-      <main className="flex-1">
+      {/* Main Page Flow with top offset for fixed navbar */}
+      <main className="flex-1 pt-20">
         {/* Hero Section with Live Stats */}
         <Hero onOpenQuoteModal={() => setQuoteModalOpen(true)} />
 
