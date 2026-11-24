@@ -6,16 +6,16 @@ export default function LightboxModal({ image, isOpen, onClose, onNext, onPrev }
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-slate-950/95 backdrop-blur-xl animate-in fade-in duration-200"
+      className="lightbox-modal lightbox-overlay fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-slate-950/95 backdrop-blur-xl animate-in fade-in duration-200"
       onClick={onClose}
     >
       {/* Close Button */}
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 p-3 rounded-full bg-slate-900/80 text-white hover:bg-amber-500 hover:text-slate-950 transition-colors z-50 cursor-pointer"
+        className="lightbox-btn absolute top-6 right-6 p-3 rounded-full bg-slate-900/80 text-white hover:bg-amber-500 hover:text-slate-950 transition-colors z-50 cursor-pointer shadow-lg"
         aria-label="Close photo"
       >
-        <X className="w-6 h-6" />
+        <X className="w-6 h-6 text-white" />
       </button>
 
       {/* Navigation Buttons if provided */}
@@ -25,10 +25,10 @@ export default function LightboxModal({ image, isOpen, onClose, onNext, onPrev }
             e.stopPropagation();
             onPrev();
           }}
-          className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-3 rounded-full bg-slate-900/80 text-white hover:bg-amber-500 hover:text-slate-950 transition-colors z-50 cursor-pointer"
+          className="lightbox-btn absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-3 rounded-full bg-slate-900/80 text-white hover:bg-amber-500 hover:text-slate-950 transition-colors z-50 cursor-pointer shadow-lg"
           aria-label="Previous photo"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-6 h-6 text-white" />
         </button>
       )}
 
@@ -38,10 +38,10 @@ export default function LightboxModal({ image, isOpen, onClose, onNext, onPrev }
             e.stopPropagation();
             onNext();
           }}
-          className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-3 rounded-full bg-slate-900/80 text-white hover:bg-amber-500 hover:text-slate-950 transition-colors z-50 cursor-pointer"
+          className="lightbox-btn absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-3 rounded-full bg-slate-900/80 text-white hover:bg-amber-500 hover:text-slate-950 transition-colors z-50 cursor-pointer shadow-lg"
           aria-label="Next photo"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-6 h-6 text-white" />
         </button>
       )}
 
@@ -50,7 +50,7 @@ export default function LightboxModal({ image, isOpen, onClose, onNext, onPrev }
         className="max-w-5xl max-h-[85vh] w-full flex flex-col items-center justify-center"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-900 shadow-2xl">
+        <div className="lightbox-frame relative rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-900 shadow-2xl">
           <img
             src={image.url}
             alt={image.caption || 'Project visual'}
@@ -59,7 +59,10 @@ export default function LightboxModal({ image, isOpen, onClose, onNext, onPrev }
         </div>
 
         {image.caption && (
-          <div className="mt-4 text-center max-w-2xl px-4 py-2 rounded-xl bg-slate-900/70 border border-slate-800 text-slate-200 text-xs sm:text-sm font-medium">
+          <div
+            className="lightbox-caption mt-4 text-center max-w-2xl px-5 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white text-xs sm:text-sm font-semibold shadow-2xl"
+            style={{ color: '#ffffff', backgroundColor: 'rgba(15, 23, 42, 0.95)' }}
+          >
             {image.caption}
           </div>
         )}

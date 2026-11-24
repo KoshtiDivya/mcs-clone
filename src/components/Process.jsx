@@ -6,7 +6,7 @@ const stepIcons = [Compass, FileText, Wrench, ShieldCheck];
 
 export default function Process() {
   return (
-    <section className="py-20 md:py-28 bg-slate-900 relative">
+    <section className="py-20 md:py-20 bg-slate-900 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">

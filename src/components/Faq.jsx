@@ -6,7 +6,7 @@ export default function Faq() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="py-20 md:py-28 bg-slate-900 relative">
+    <section className="py-20 md:py-20 bg-slate-900 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Left info column */}
@@ -47,9 +47,8 @@ export default function Faq() {
                       {faq.question}
                     </span>
                     <ChevronDown
-                      className={`w-5 h-5 text-amber-400 shrink-0 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180' : ''
-                      }`}
+                      className={`w-5 h-5 text-amber-400 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''
+                        }`}
                     />
                   </button>
 

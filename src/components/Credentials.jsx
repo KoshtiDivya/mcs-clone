@@ -1,6 +1,6 @@
 import React from 'react';
-import { 
-  Building, ShieldCheck, Receipt, Hash, Award, Flame, FileCheck, HardHat, Check, Copy, ExternalLink 
+import {
+  Building, ShieldCheck, Receipt, Hash, Award, Flame, FileCheck, HardHat, Check, Copy, ExternalLink
 } from 'lucide-react';
 import { siteData } from '../data/siteData';
 
@@ -25,7 +25,7 @@ export default function Credentials() {
   };
 
   return (
-    <section id="credentials" className="py-20 md:py-28 bg-slate-900 relative">
+    <section id="credentials" className="py-12 md:py-15 bg-slate-900 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">
@@ -94,16 +94,18 @@ export default function Credentials() {
         </div>
 
         {/* Verification Callout */}
-        <div className="mt-12 bg-slate-950/90 border border-slate-800 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="credentials-callout mt-12 bg-slate-950/90 border border-slate-800 rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-center justify-between gap-5 transition-all">
           <div className="text-center sm:text-left">
-            <h4 className="text-sm font-bold text-white">Need formal documentation for corporate compliance?</h4>
-            <p className="text-xs text-slate-400 mt-1">
+            <h4 className="callout-title text-sm sm:text-base font-bold text-white tracking-tight">
+              Need formal documentation for corporate compliance?
+            </h4>
+            <p className="callout-desc text-xs sm:text-sm text-slate-400 mt-1 leading-relaxed max-w-2xl">
               We can provide certified copies of our CR, OCCI membership, Civil Defence approvals, and Tax Card with any formal commercial tender.
             </p>
           </div>
           <a
             href="#contact"
-            className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-500/30 text-xs font-bold shrink-0 transition-colors"
+            className="callout-btn px-6 py-2.5 rounded-full bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold uppercase tracking-wider shrink-0 transition-all shadow-md hover:scale-105 active:scale-95 text-center"
           >
             Request Document Copies
           </a>

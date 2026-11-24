@@ -36,7 +36,7 @@ export default function Projects() {
     : allProjects.filter(p => p.category === activeCategory);
 
   return (
-    <section id="projects" className="py-20 md:py-28 bg-slate-900 relative">
+    <section id="projects" className="py-12 md:py-15 bg-slate-900 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -59,11 +59,10 @@ export default function Projects() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                  activeCategory === cat
-                    ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
-                }`}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeCategory === cat
+                  ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
+                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
+                  }`}
               >
                 {cat}
               </button>
@@ -87,18 +86,17 @@ export default function Projects() {
                       <div
                         key={idx}
                         onClick={() => setLightboxImage(img)}
-                        className={`group relative overflow-hidden rounded-2xl cursor-pointer bg-slate-800 ${
-                          item.images.length === 1 ? 'col-span-2 h-72 sm:h-96' : 'h-44 sm:h-52'
-                        }`}
+                        className={`group relative overflow-hidden rounded-2xl cursor-pointer bg-slate-800 ${item.images.length === 1 ? 'col-span-2 h-72 sm:h-96' : 'h-44 sm:h-52'
+                          }`}
                       >
                         <img
                           src={img.url}
                           alt={img.caption}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
-                        <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <div className="image-hover-overlay absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                           <span className="p-2.5 rounded-full bg-amber-500 text-slate-950 shadow-lg">
-                            <Eye className="w-5 h-5" />
+                            <Eye className="w-5 h-5 text-slate-950" />
                           </span>
                         </div>
                       </div>

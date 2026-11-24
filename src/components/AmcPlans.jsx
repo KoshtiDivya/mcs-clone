@@ -1,6 +1,6 @@
 import React from 'react';
-import { 
-  Check, Sparkles, Fan, Droplets, Zap, ShieldAlert, Truck, ArrowRight, ShieldCheck 
+import {
+  Check, Sparkles, Fan, Droplets, Zap, ShieldAlert, Truck, ArrowRight, ShieldCheck
 } from 'lucide-react';
 import { siteData } from '../data/siteData';
 
@@ -14,7 +14,7 @@ const moduleIcons = {
 
 export default function AmcPlans({ onSelectPlan }) {
   return (
-    <section id="packages" className="py-20 md:py-28 bg-slate-950 relative">
+    <section id="packages" className="py-12 md:py-15 bg-slate-950 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl">
@@ -56,11 +56,10 @@ export default function AmcPlans({ onSelectPlan }) {
           {siteData.amcPlans.map((plan, idx) => (
             <div
               key={idx}
-              className={`relative bg-slate-900 rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 ${
-                plan.isPopular
-                  ? 'border-2 border-amber-500 shadow-2xl shadow-amber-500/10 -translate-y-2'
-                  : 'border border-slate-800 hover:border-slate-700'
-              }`}
+              className={`relative bg-slate-900 rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 ${plan.isPopular
+                ? 'border-2 border-amber-500 shadow-2xl shadow-amber-500/10 -translate-y-2'
+                : 'border border-slate-800 hover:border-slate-700'
+                }`}
             >
               {plan.isPopular && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 text-[10px] font-black uppercase tracking-wider shadow-md">
@@ -111,11 +110,10 @@ export default function AmcPlans({ onSelectPlan }) {
               <div className="mt-8 pt-6 border-t border-slate-800/80">
                 <button
                   onClick={() => onSelectPlan ? onSelectPlan(plan.name) : window.location.assign('#contact')}
-                  className={`w-full py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer ${
-                    plan.isPopular
-                      ? 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 hover:scale-105 active:scale-95'
-                      : 'bg-slate-800 hover:bg-slate-700 text-white'
-                  }`}
+                  className={`w-full py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer ${plan.isPopular
+                    ? 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 hover:scale-105 active:scale-95'
+                    : 'bg-slate-800 hover:bg-slate-700 text-white'
+                    }`}
                 >
                   <span>Select {plan.name}</span>
                   <ArrowRight className="w-4 h-4" />

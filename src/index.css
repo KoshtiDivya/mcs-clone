@@ -1,6 +1,20 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
+  :root {
+    color-scheme: light dark;
+
+    &:has(> head > meta[name="color-scheme"][content="dark"]) {
+      color-scheme: dark;
+    }
+
+    &:has(> head > meta[name="color-scheme"][content="light"]) {
+      color-scheme: light;
+    }
+  }
+
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5.5rem;
@@ -8,20 +22,998 @@
   }
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar adaptable to color-scheme */
+:root {
+  --color-scrollbar-track: #0f172a;
+  --color-scrollbar-thumb: #334155;
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
+}
+
+html.light {
+  --color-scrollbar-track: #f1f5f9;
+  --color-scrollbar-thumb: #94a3b8;
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: var(--color-scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: var(--color-scrollbar-thumb);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #d97706;
+}
+
+/* Hide Netlify Drawer / Feedback Widget if injected */
+#netlify-drawer,
+[data-netlify-drawer],
+.netlify-drawer,
+netlify-drawer,
+iframe[src*="netlify"],
+div[class*="netlify-feedback"],
+div[id*="netlify-feedback"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ==========================================================================
+   PERFECT LIGHT MODE COLOR COMBINATIONS & DESIGN SYSTEM
+   Theme: Alabaster Canvas, Deep Slate Navy & Rich Omani Honey Gold
+   100% WCAG Contrast: Zero dark-on-dark or light-on-light clashes.
+   ========================================================================== */
+
+html.light body,
+html.light #top {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* --- 1. Fixed Header in Light Mode - Exact Match to Screenshot --- */
+html.light header {
+  background-color: #f1f5f9 !important;
+  border-bottom: 2px solid #0d233a !important;
+  box-shadow: 0 4px 15px -2px rgba(13, 35, 58, 0.08) !important;
+}
+
+html.light header a,
+html.light header .brand-title {
+  color: #0d233a !important;
+}
+
+html.light header a:hover {
+  color: #b45309 !important;
+}
+
+html.light header nav a {
+  color: #0d233a !important;
+  font-weight: 700 !important;
+}
+
+html.light header nav a:hover {
+  color: #b45309 !important;
+}
+
+html.light header .brand-tagline,
+html.light header .text-slate-400 {
+  color: #64748b !important;
+}
+
+/* Services Dropdown in Light Mode - Solid Clean White Card with Crisp High-Contrast Typography */
+html.light header .services-dropdown-card {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.06) !important;
+}
+
+html.light header .services-dropdown-header {
+  color: #b45309 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+html.light header .services-dropdown-item {
+  color: #0f172a !important;
+  background-color: transparent !important;
+}
+
+html.light header .services-dropdown-item:hover {
+  background-color: #f1f5f9 !important;
+  color: #b45309 !important;
+}
+
+html.light header .services-dropdown-item-title {
+  color: #0f172a !important;
+}
+
+html.light header .services-dropdown-item:hover .services-dropdown-item-title {
+  color: #b45309 !important;
+}
+
+html.light header .services-dropdown-item-tag {
+  color: #64748b !important;
+}
+
+/* Mobile Nav Drawer in Light Mode */
+html.light header .mobile-nav-drawer {
+  background-color: #ffffff !important;
+  border-top: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light header .mobile-nav-drawer a {
+  color: #0d233a !important;
+}
+
+html.light header .mobile-nav-drawer a:hover {
+  background-color: #f1f5f9 !important;
+  color: #b45309 !important;
+}
+
+html.light header button[aria-label*="theme"],
+html.light header button[title*="theme"],
+html.light header button[title*="mode"] {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0d233a !important;
+}
+
+html.light header button[aria-label="Toggle Navigation"] {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0d233a !important;
+}
+
+/* MCS Icon Badge - ALWAYS Deep Navy background with Amber text */
+.mcs-badge-icon {
+  background-color: #0d233a !important;
+  border: 1px solid #1e3a5f !important;
+}
+
+.mcs-badge-text {
+  color: #f59e0b !important;
+}
+
+/* REQUEST A QUOTE button in light mode - EXACTLY Deep Navy pill with White text */
+html.light header .quote-pill-btn {
+  background-color: #0d233a !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(13, 35, 58, 0.25) !important;
+}
+
+html.light header .quote-pill-btn:hover {
+  background-color: #163352 !important;
+  color: #ffffff !important;
+}
+
+/* --- 2. Sections Canvas Alternation in Light Mode --- */
+html.light section {
+  background-color: #f8fafc !important;
+}
+
+html.light section.bg-slate-900,
+html.light section#about,
+html.light section#projects,
+html.light section#track-record,
+html.light section#credentials {
+  background-color: #ffffff !important;
+}
+
+/* Hero Section in Light Mode */
+html.light section.bg-gradient-to-b {
+  background: linear-gradient(180deg, #ffffff 0%, #f4f7fb 60%, #f8fafc 100%) !important;
+}
+
+html.light .blueprint-grid {
+  background-image: linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px) !important;
+}
+
+html.light .hero-badge {
+  background-color: #fef3c7 !important;
+  border-color: #fde68a !important;
+  color: #92400e !important;
+}
+
+html.light .hero-badge span:first-child {
+  background-color: #d97706 !important;
+}
+
+html.light .hero-title {
+  color: #0f172a !important;
+}
+
+html.light .hero-highlight {
+  background-image: linear-gradient(to right, #b45309, #d97706, #b45309) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+html.light .hero-desc {
+  color: #334155 !important;
+}
+
+html.light .hero-secondary-btn {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.light .hero-secondary-btn:hover {
+  background-color: #f8fafc !important;
+  border-color: #94a3b8 !important;
+}
+
+html.light .hero-call-link {
+  color: #334155 !important;
+}
+
+html.light .hero-call-link:hover {
+  color: #b45309 !important;
+}
+
+html.light .hero-trust-bar {
+  border-top-color: #e2e8f0 !important;
+}
+
+html.light .hero-trust-bar span {
+  color: #334155 !important;
+}
+
+html.light .hero-secondary-card {
+  background-color: #ffffff !important;
+  border-color: #f59e0b !important;
+}
+
+html.light .hero-secondary-caption {
+  background-color: #ffffff !important;
+  color: #334155 !important;
+  border-top: 1px solid #e2e8f0;
+}
+
+html.light .hero-secondary-caption span:first-child {
+  color: #b45309 !important;
+}
+
+html.light .hero-secondary-caption span:last-child {
+  color: #64748b !important;
+}
+
+html.light .hero-stat-badge {
+  background-color: #ffffff !important;
+  border-color: #fde68a !important;
+  box-shadow: 0 10px 25px -5px rgba(217, 119, 6, 0.12), 0 4px 6px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .hero-stat-badge .text-amber-500 {
+  color: #b45309 !important;
+}
+
+html.light .hero-stat-badge .stat-label {
+  color: #0f172a !important;
+}
+
+html.light .hero-stat-badge .stat-sub {
+  color: #64748b !important;
+}
+
+html.light .hero-stats-row {
+  border-top-color: #e2e8f0 !important;
+}
+
+html.light .hero-stat-item {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .hero-stat-item .text-amber-500 {
+  color: #b45309 !important;
+}
+
+html.light .hero-stat-item .stat-item-label {
+  color: #0f172a !important;
+}
+
+html.light .hero-stat-item .stat-item-sub {
+  color: #64748b !important;
+}
+
+/* --- 3. Cards in Light Mode --- */
+html.light .bg-slate-900:not(.image-hover-overlay):not(.lightbox-frame):not(.lightbox-caption),
+html.light .bg-slate-900\/50,
+html.light .bg-slate-900\/60,
+html.light .bg-slate-900\/70:not(.lightbox-caption),
+html.light .bg-slate-900\/80,
+html.light .bg-slate-900\/85,
+html.light .bg-slate-900\/90:not(.lightbox-caption),
+html.light .bg-slate-900\/95,
+html.light .bg-slate-950,
+html.light .bg-slate-950\/50,
+html.light .bg-slate-950\/60,
+html.light .bg-slate-950\/70,
+html.light .bg-slate-950\/80:not(.service-modal-backdrop),
+html.light .bg-slate-950\/85,
+html.light .bg-slate-950\/90:not(.credentials-callout),
+html.light .bg-slate-950\/95:not(.lightbox-overlay):not(.lightbox-modal) {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
+}
+
+/* Card typography in light mode on standard light cards */
+html.light h1:not(.credentials-callout *):not(footer *),
+html.light h2:not(.credentials-callout *):not(footer *),
+html.light h3:not(.credentials-callout *):not(footer *),
+html.light h4:not(.credentials-callout *):not(footer *),
+html.light .text-white:not(.credentials-callout *):not(footer *):not(.quote-pill-btn):not(.whatsapp-submit-btn):not(.hero-image-caption):not(.lightbox-modal *):not(.lightbox-overlay *):not(.lightbox-caption *):not(.image-hover-overlay *) {
+  color: #0f172a !important;
+}
+
+html.light p:not(.credentials-callout *):not(footer *),
+html.light .text-slate-300:not(.credentials-callout *):not(footer *) {
+  color: #334155 !important;
+}
+
+html.light .text-slate-400:not(.credentials-callout *):not(footer *) {
+  color: #64748b !important;
+}
+
+html.light .text-slate-500:not(.credentials-callout *):not(footer *) {
+  color: #64748b !important;
+}
+
+html.light .border-slate-800,
+html.light .border-slate-800\/80,
+html.light .border-slate-700 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Hover on cards in light mode */
+html.light .hover\:border-amber-500\/40:hover,
+html.light .hover\:border-amber-500\/50:hover,
+html.light .hover\:border-slate-700:hover {
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Category Badges in Light Mode */
+html.light .bg-slate-800:not(.credentials-callout *):not(footer *) {
+  background-color: #f1f5f9 !important;
+  color: #334155 !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light .bg-amber-500\/10,
+html.light .bg-amber-500\/20 {
+  background-color: #fef3c7 !important;
+  border-color: #fde68a !important;
+}
+
+html.light .text-amber-500:not(.mcs-badge-text):not(.credentials-callout *):not(footer *),
+html.light .text-amber-400:not(.mcs-badge-text):not(.credentials-callout *):not(footer *),
+html.light .text-amber-300:not(.mcs-badge-text):not(.credentials-callout *):not(footer *) {
+  color: #b45309 !important;
+}
+
+/* --- Corporate Compliance Verification Callout (Deep Navy Banner with 100% Crisp White Text) --- */
+html.light .credentials-callout {
+  background: linear-gradient(135deg, #0d233a 0%, #152d47 100%) !important;
+  border: 1px solid #1e3a5f !important;
+  box-shadow: 0 10px 30px -5px rgba(13, 35, 58, 0.25) !important;
+}
+html.light .credentials-callout .callout-title,
+html.light .credentials-callout h4 {
+  color: #ffffff !important;
+}
+html.light .credentials-callout .callout-desc,
+html.light .credentials-callout p {
+  color: #cbd5e1 !important;
+}
+html.light .credentials-callout .callout-btn,
+html.light .credentials-callout a {
+  background-color: #f59e0b !important;
+  color: #0d233a !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35) !important;
+}
+html.light .credentials-callout .callout-btn:hover,
+html.light .credentials-callout a:hover {
+  background-color: #fbbf24 !important;
+  color: #0d233a !important;
+}
+
+html.light .text-amber-500,
+html.light .text-amber-400 {
+  color: #b45309 !important;
+}
+
+/* Service icon boxes */
+html.light #services .w-12.h-12 {
+  background-color: #fef3c7 !important;
+  border-color: #fde68a !important;
+  color: #b45309 !important;
+}
+
+/* --- 4. Founder Card (Eng. Rafiqul) in Light Mode --- */
+/* Clean, executive white card with high-contrast text and warm amber accent */
+html.light #about .founder-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light #about .founder-card .founder-name {
+  color: #0f172a !important;
+}
+
+html.light #about .founder-card .founder-role {
+  color: #b45309 !important;
+}
+
+html.light #about .founder-card .founder-bio {
+  color: #334155 !important;
+}
+
+html.light #about .founder-card .founder-quote-box {
+  border-top-color: #e2e8f0 !important;
+}
+
+html.light #about .founder-card .founder-quote-text {
+  color: #92400e !important;
+}
+
+html.light #about .founder-card .founder-stat-box {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light #about .founder-card .founder-stat-value {
+  color: #b45309 !important;
+}
+
+html.light #about .founder-card .founder-stat-label {
+  color: #64748b !important;
+}
+
+html.light #about .founder-card .founder-site-badge {
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+  color: #047857 !important;
+}
+
+html.light #about .founder-card .founder-city-label {
+  color: #64748b !important;
+}
+
+html.light #about .founder-card .founder-call-btn {
+  background-color: #0d233a !important;
+  color: #ffffff !important;
+}
+
+html.light #about .founder-card .founder-call-btn:hover {
+  background-color: #163352 !important;
+}
+
+/* --- 5. Track Record in Light Mode --- */
+html.light #track-record .track-card-loc {
+  color: #b45309 !important;
+}
+
+html.light #track-record .ac-stat-box {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light #track-record .ac-stat-box .text-amber-500 {
+  color: #b45309 !important;
+}
+
+/* Direct maintenance banner in light mode */
+html.light #track-record .direct-maintenance-banner {
+  background: linear-gradient(135deg, #f8fafc 0%, #edf4fc 100%) !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+html.light #track-record .direct-maintenance-banner .direct-banner-title {
+  color: #0f172a !important;
+}
+
+html.light #track-record .direct-maintenance-banner .direct-banner-desc {
+  color: #334155 !important;
+}
+
+html.light #track-record .direct-maintenance-banner .sub-card {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+html.light #track-record .direct-maintenance-banner .sub-card .client-name {
+  color: #0f172a !important;
+}
+
+html.light #track-record .direct-maintenance-banner .sub-card .client-prop {
+  color: #b45309 !important;
+}
+
+html.light #track-record .direct-maintenance-banner .sub-card .client-desc {
+  color: #475569 !important;
+}
+
+/* --- 6. AMC Pricing Plans in Light Mode --- */
+html.light #packages .border-2.border-amber-500 {
+  border-color: #d97706 !important;
+  box-shadow: 0 16px 36px -4px rgba(217, 119, 6, 0.12) !important;
+}
+
+html.light #packages .bg-slate-800 {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+html.light #packages .bg-slate-800:hover {
+  background-color: #e2e8f0 !important;
+}
+
+/* --- 7. Contact Section in Light Mode --- */
+html.light #contact .contact-channel-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light #contact .contact-channel-card .channel-label {
+  color: #64748b !important;
+}
+
+html.light #contact .contact-channel-card .channel-value {
+  color: #0f172a !important;
+}
+
+html.light #contact .contact-channel-card .channel-sub {
+  color: #64748b !important;
+}
+
+html.light #contact .contact-channel-card .channel-icon {
+  background-color: #fef3c7 !important;
+  color: #b45309 !important;
+}
+
+/* WhatsApp card in contact */
+html.light #contact .whatsapp-info-card {
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+}
+
+html.light #contact .whatsapp-info-card .card-title {
+  color: #065f46 !important;
+}
+
+html.light #contact .whatsapp-info-card .card-value {
+  color: #047857 !important;
+}
+
+html.light #contact .whatsapp-info-card .card-desc {
+  color: #065f46 !important;
+}
+
+html.light #contact .whatsapp-info-card .channel-icon {
+  background-color: #d1fae5 !important;
+  color: #059669 !important;
+}
+
+/* Contact form in light mode */
+html.light #contact .contact-form-card {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light #contact .form-head-title {
+  color: #0f172a !important;
+}
+
+html.light #contact .form-head-sub {
+  color: #64748b !important;
+}
+
+html.light #contact .form-field-label {
+  color: #334155 !important;
+}
+
+html.light #contact form input,
+html.light #contact form select,
+html.light #contact form textarea {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html.light #contact form input:focus,
+html.light #contact form select:focus,
+html.light #contact form textarea:focus {
+  border-color: #d97706 !important;
+  box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.15) !important;
+}
+
+html.light #contact form input::placeholder,
+html.light #contact form textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+html.light #contact .property-type-btn {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+html.light #contact .property-type-btn.active {
+  background-color: #fef3c7 !important;
+  border-color: #d97706 !important;
+  color: #92400e !important;
+}
+
+/* Custom Service Select Dropdown in Light Mode */
+html.light .service-select-trigger {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .service-select-trigger span.text-white {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+html.light .service-select-trigger span.text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+html.light .service-select-trigger:focus,
+html.light .service-select-trigger[aria-expanded="true"] {
+  border-color: #d97706 !important;
+  box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.2) !important;
+}
+
+html.light .service-dropdown-panel {
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.15), 0 5px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light .service-dropdown-panel .text-amber-400\/90 {
+  color: #b45309 !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light .service-option-item {
+  color: #0f172a !important;
+}
+
+html.light .service-option-item:hover {
+  background-color: #f1f5f9 !important;
+  color: #b45309 !important;
+}
+
+html.light .service-option-item.active,
+html.light .service-option-item.bg-amber-500\/15 {
+  background-color: #fef3c7 !important;
+  color: #b45309 !important;
+}
+
+html.light .service-option-tag {
+  background-color: #f1f5f9 !important;
+  color: #64748b !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* WhatsApp submit button - always solid emerald with white text */
+.whatsapp-submit-btn {
+  background-color: #059669 !important;
+  color: #ffffff !important;
+}
+
+.whatsapp-submit-btn:hover {
+  background-color: #047857 !important;
+}
+
+.whatsapp-submit-btn svg,
+.whatsapp-submit-btn span {
+  color: #ffffff !important;
+}
+
+/* --- 8. Modals in Light Mode --- */
+html.light .fixed.inset-0 .bg-slate-900 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light .fixed.inset-0 .bg-slate-900 h3 {
+  color: #0f172a !important;
+}
+
+html.light .fixed.inset-0 .bg-slate-900 p {
+  color: #334155 !important;
+}
+
+html.light .fixed.inset-0 .bg-slate-900 label {
+  color: #334155 !important;
+}
+
+html.light .fixed.inset-0 .bg-slate-900 input,
+html.light .fixed.inset-0 .bg-slate-900 select,
+html.light .fixed.inset-0 .bg-slate-900 textarea {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html.light .fixed.inset-0 .bg-slate-900 button.bg-slate-800 {
+  background-color: #f1f5f9 !important;
+  color: #334155 !important;
+}
+
+/* Service Detail Modal (View Details) in Light Mode */
+html.light .service-modal-backdrop {
+  background-color: rgba(15, 23, 42, 0.6) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+html.light .service-modal-card {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25) !important;
+}
+
+html.light .service-modal-title {
+  color: #0f172a !important;
+}
+
+html.light .service-modal-tag {
+  background-color: #fef3c7 !important;
+  border-color: #fde68a !important;
+  color: #b45309 !important;
+}
+
+html.light .service-modal-close {
+  background-color: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+html.light .service-modal-close:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+html.light .service-modal-desc {
+  color: #334155 !important;
+}
+
+html.light .service-modal-subtitle {
+  color: #64748b !important;
+}
+
+html.light .service-modal-feature,
+html.light .service-modal-feature .feature-text {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+html.light .service-modal-footer {
+  border-top-color: #e2e8f0 !important;
+}
+
+html.light .service-modal-cancel {
+  background-color: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+}
+html.light .service-modal-cancel:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+html.light .service-modal-cta {
+  background-color: #0d233a !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(13, 35, 58, 0.25) !important;
+}
+html.light .service-modal-cta:hover {
+  background-color: #163352 !important;
+  color: #ffffff !important;
+}
+
+/* Gallery Image Hover Overlay - Translucent Dark Tint with Amber Icon */
+.image-hover-overlay,
+html.light .image-hover-overlay {
+  background-color: rgba(2, 6, 23, 0.45) !important;
+}
+
+/* Lightbox Gallery Modal (ALWAYS Cinematic Dark Backdrop with 100% Crisp White Text) */
+.lightbox-overlay,
+html.light .lightbox-overlay,
+.lightbox-modal,
+html.light .lightbox-modal {
+  background-color: rgba(2, 6, 23, 0.96) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+.lightbox-frame,
+html.light .lightbox-frame {
+  background-color: #0b1329 !important;
+  border-color: #1e293b !important;
+}
+
+.lightbox-caption,
+html.light .lightbox-caption,
+.lightbox-caption *,
+html.light .lightbox-caption * {
+  background-color: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid #334155 !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6) !important;
+}
+
+.lightbox-btn,
+html.light .lightbox-btn {
+  background-color: rgba(15, 23, 42, 0.85) !important;
+  color: #ffffff !important;
+  border: 1px solid #334155 !important;
+}
+
+.lightbox-btn svg,
+html.light .lightbox-btn svg {
+  color: #ffffff !important;
+}
+
+.lightbox-btn:hover,
+html.light .lightbox-btn:hover {
+  background-color: #f59e0b !important;
+  color: #0f172a !important;
+  border-color: #f59e0b !important;
+}
+
+.lightbox-btn:hover svg,
+html.light .lightbox-btn:hover svg {
+  color: #0f172a !important;
+}
+
+/* Global Light Mode Safety: Ensure text-slate-200 is never faint on light cards */
+html.light .text-slate-200:not(.credentials-callout *):not(footer *):not(.lightbox-caption):not(.lightbox-btn *) {
+  color: #1e293b !important;
+}
+
+/* --- 9. Image Overlays on Photos (ALWAYS Pure White Text) --- */
+.hero-image-caption {
+  color: #ffffff !important;
+}
+
+/* --- 10. Footer Theme Styling --- */
+/* Dark Mode Default */
+footer.footer-container {
+  background-color: #0a1727 !important;
+  border-top: 1px solid #172a40 !important;
+}
+
+footer .footer-brand-title {
+  color: #ffffff !important;
+}
+
+footer .footer-col-title {
+  color: #ffffff !important;
+}
+
+footer .footer-desc {
+  color: #94a3b8 !important;
+}
+
+footer .footer-credentials-block {
+  color: #f59e0b !important;
+}
+
+footer .footer-link {
+  color: #94a3b8 !important;
+}
+
+footer .footer-link:hover {
+  color: #f59e0b !important;
+}
+
+footer .footer-contact-text,
+footer .footer-email-link {
+  color: #94a3b8 !important;
+}
+
+footer .footer-phone-link {
+  color: #ffffff !important;
+}
+
+footer .footer-top-grid {
+  border-bottom-color: #172a40 !important;
+}
+
+footer .footer-copyright {
+  color: #64748b !important;
+}
+
+/* Light Mode Footer - Crisp, executive light theme with 100% WCAG contrast */
+html.light footer.footer-container {
+  background-color: #f1f5f9 !important;
+  border-top: 2px solid #0d233a !important;
+}
+
+html.light footer .footer-brand-title {
+  color: #0d233a !important;
+}
+
+html.light footer .footer-brand-llc {
+  background-color: #fef3c7 !important;
+  border-color: #fde68a !important;
+  color: #b45309 !important;
+}
+
+html.light footer .footer-desc {
+  color: #334155 !important;
+}
+
+html.light footer .footer-credentials-block {
+  color: #b45309 !important;
+}
+
+html.light footer .footer-col-title {
+  color: #0d233a !important;
+  font-weight: 800 !important;
+}
+
+html.light footer .footer-link {
+  color: #334155 !important;
+  font-weight: 500 !important;
+}
+
+html.light footer .footer-link:hover {
+  color: #b45309 !important;
+}
+
+html.light footer .footer-amc-link {
+  color: #b45309 !important;
+}
+
+html.light footer .footer-contact-text,
+html.light footer .footer-email-link {
+  color: #334155 !important;
+}
+
+html.light footer .footer-email-link:hover {
+  color: #b45309 !important;
+}
+
+html.light footer .footer-phone-link {
+  color: #0d233a !important;
+  font-weight: 700 !important;
+}
+
+html.light footer .footer-phone-link:hover {
+  color: #b45309 !important;
+}
+
+html.light footer .footer-top-grid {
+  border-bottom-color: #cbd5e1 !important;
+}
+
+html.light footer .footer-copyright {
+  color: #64748b !important;
+}
+
+html.light footer .footer-licensed-badge {
+  color: #047857 !important;
 }

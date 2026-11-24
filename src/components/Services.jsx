@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { 
-  Building2, Wrench, Paintbrush, Zap, Palette, Droplets, Fan, ShieldAlert, 
+import {
+  Building2, Wrench, Paintbrush, Zap, Palette, Droplets, Fan, ShieldAlert,
   ArrowRight, Check, Sparkles, ChevronRight
 } from 'lucide-react';
 import { siteData } from '../data/siteData';
@@ -20,7 +20,7 @@ export default function Services({ onSelectServiceForQuote }) {
   const [activeServiceModal, setActiveServiceModal] = useState(null);
 
   return (
-    <section id="services" className="py-20 md:py-28 bg-slate-950 relative">
+    <section id="services" className="py-12 md:py-15 bg-slate-950 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl">
@@ -99,47 +99,47 @@ export default function Services({ onSelectServiceForQuote }) {
 
       {/* Service Detail Modal */}
       {activeServiceModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="bg-slate-900 border border-slate-700 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+        <div className="service-modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="service-modal-card bg-slate-900 border border-slate-700 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
             <div className="flex items-start justify-between">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400 px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30">
+                <span className="service-modal-tag text-[10px] font-bold uppercase tracking-wider text-amber-500 px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/30">
                   {activeServiceModal.tag}
                 </span>
-                <h3 className="mt-2 text-2xl font-bold text-white">
+                <h3 className="service-modal-title mt-2 text-2xl font-extrabold text-white">
                   {activeServiceModal.title}
                 </h3>
               </div>
               <button
                 onClick={() => setActiveServiceModal(null)}
-                className="p-2 text-slate-400 hover:text-white rounded-xl bg-slate-800"
+                className="service-modal-close p-2 text-slate-400 hover:text-white rounded-xl bg-slate-800 transition-colors cursor-pointer"
               >
                 ✕
               </button>
             </div>
 
-            <p className="mt-4 text-sm text-slate-300 leading-relaxed">
+            <p className="service-modal-desc mt-4 text-sm text-slate-300 leading-relaxed">
               {activeServiceModal.description}
             </p>
 
             <div className="mt-6">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              <h4 className="service-modal-subtitle text-xs font-bold uppercase tracking-wider text-slate-400">
                 Key Technical Capabilities
               </h4>
               <ul className="mt-3 space-y-2.5">
                 {activeServiceModal.features.map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-2.5 text-xs text-slate-200">
-                    <Check className="w-4 h-4 text-amber-400 shrink-0" />
-                    <span>{item}</span>
+                  <li key={idx} className="service-modal-feature flex items-center gap-2.5 text-xs text-slate-200">
+                    <Check className="w-4 h-4 text-amber-500 shrink-0" />
+                    <span className="feature-text">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-slate-800 flex items-center justify-end gap-3">
+            <div className="service-modal-footer mt-8 pt-6 border-t border-slate-800 flex flex-wrap items-center justify-end gap-3">
               <button
                 onClick={() => setActiveServiceModal(null)}
-                className="px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold hover:bg-slate-700"
+                className="service-modal-cancel px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold hover:bg-slate-700 cursor-pointer"
               >
                 Close
               </button>
@@ -148,7 +148,7 @@ export default function Services({ onSelectServiceForQuote }) {
                   onSelectServiceForQuote(activeServiceModal.title);
                   setActiveServiceModal(null);
                 }}
-                className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold transition-all"
+                className="service-modal-cta px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold transition-all shadow-md cursor-pointer"
               >
                 Request Quotation for {activeServiceModal.title}
               </button>

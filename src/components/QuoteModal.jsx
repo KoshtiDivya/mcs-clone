@@ -1,16 +1,28 @@
-import React from 'react';
-import { X, Send, Sparkles } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { X, Send, Sparkles, ChevronDown, Check } from 'lucide-react';
 import { siteData } from '../data/siteData';
 
 export default function QuoteModal({ isOpen, onClose, selectedService }) {
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
     email: '',
     service: selectedService || 'Building Construction',
     notes: ''
   });
-  const [sent, setSent] = React.useState(false);
+  const [sent, setSent] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   React.useEffect(() => {
     if (selectedService) {
@@ -31,7 +43,7 @@ export default function QuoteModal({ isOpen, onClose, selectedService }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/40 backdrop-blur-md animate-in fade-in duration-200 overflow-y-auto">
       <div className="bg-slate-900 border border-slate-700 rounded-2xl sm:rounded-3xl max-w-md w-full p-5 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto box-border min-w-0">
         <button
           onClick={onClose}
@@ -93,18 +105,80 @@ export default function QuoteModal({ isOpen, onClose, selectedService }) {
               />
             </div>
 
-            <div className="w-full min-w-0">
-              <label className="block text-xs font-medium text-slate-300 mb-1">Service</label>
-              <select
-                value={formData.service}
-                onChange={e => setFormData({ ...formData, service: e.target.value })}
-                className="w-full min-w-0 max-w-full box-border px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs sm:text-sm text-white focus:border-amber-500 outline-none"
+            <div className="w-full min-w-0 relative" ref={dropdownRef}>
+              <label className="block text-xs font-medium text-slate-300 mb-1">Service Required</label>
+              <button
+                type="button"
+                onClick={() => setDropdownOpen(prev => !prev)}
+                className={`service-select-trigger w-full min-w-0 max-w-full box-border px-3.5 py-2.5 rounded-xl border flex items-center justify-between text-left text-xs sm:text-sm transition-all cursor-pointer ${
+                  dropdownOpen
+                    ? 'border-amber-500 ring-2 ring-amber-500/20 bg-slate-900'
+                    : 'border-slate-800 bg-slate-950 hover:border-slate-700'
+                }`}
               >
-                {siteData.services.map(s => (
-                  <option key={s.id} value={s.title}>{s.title}</option>
-                ))}
-                <option value="Annual Maintenance Plan">Annual Maintenance Plan (AMC)</option>
-              </select>
+                <span className={`truncate font-medium ${formData.service ? 'text-white font-semibold' : 'text-slate-500'}`}>
+                  {formData.service || 'Select a service category…'}
+                </span>
+                <ChevronDown
+                  className={`w-4 h-4 text-amber-500 shrink-0 transition-transform duration-200 ml-2 ${
+                    dropdownOpen ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+
+              {dropdownOpen && (
+                <div className="service-dropdown-panel absolute z-30 left-0 right-0 mt-1 max-h-56 overflow-y-auto rounded-2xl bg-slate-900 border border-slate-700 shadow-2xl p-1.5 animate-in fade-in slide-in-from-top-1 duration-150">
+                  <div className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-amber-400/90 border-b border-slate-800 mb-1">
+                    Services
+                  </div>
+                  {siteData.services.map((s) => {
+                    const isSelected = formData.service === s.title;
+                    return (
+                      <button
+                        key={s.id}
+                        type="button"
+                        onClick={() => {
+                          setFormData(prev => ({ ...prev, service: s.title }));
+                          setDropdownOpen(false);
+                        }}
+                        className={`service-option-item w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-colors cursor-pointer text-left ${
+                          isSelected
+                            ? 'active bg-amber-500/15 text-amber-400 font-bold'
+                            : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2 truncate">
+                          {isSelected && <Check className="w-3.5 h-3.5 text-amber-500 shrink-0" />}
+                          <span className="truncate">{s.title}</span>
+                        </div>
+                        <span className="service-option-tag text-[9px] font-medium px-2 py-0.5 rounded bg-slate-800 text-slate-400 shrink-0 ml-2">
+                          {s.tag}
+                        </span>
+                      </button>
+                    );
+                  })}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormData(prev => ({ ...prev, service: 'Annual Maintenance Plan (AMC)' }));
+                      setDropdownOpen(false);
+                    }}
+                    className={`service-option-item w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-colors cursor-pointer text-left ${
+                      formData.service === 'Annual Maintenance Plan (AMC)'
+                        ? 'active bg-amber-500/15 text-amber-400 font-bold'
+                        : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 truncate">
+                      {formData.service === 'Annual Maintenance Plan (AMC)' && <Check className="w-3.5 h-3.5 text-amber-500 shrink-0" />}
+                      <span className="truncate">Annual Maintenance Plan (AMC)</span>
+                    </div>
+                    <span className="service-option-tag text-[9px] font-medium px-2 py-0.5 rounded bg-slate-800 text-slate-400 shrink-0 ml-2">
+                      Yearly Plan
+                    </span>
+                  </button>
+                </div>
+              )}
             </div>
 
             <div className="w-full min-w-0">
